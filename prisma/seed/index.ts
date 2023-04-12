@@ -25,7 +25,7 @@ async function main() {
 
   console.time('Inserting skills')
   const skills = await Promise.all(
-    Array.from({ length: 30 }, async () => {
+    Array.from({ length: 15 }, async () => {
       return await prisma.skill.create({
         data: { ...createSkill() },
       })
@@ -35,7 +35,7 @@ async function main() {
 
   console.time('Inserting roles')
   const roles = await Promise.all(
-    Array.from({ length: 30 }, async () => {
+    Array.from({ length: 15 }, async () => {
       return await prisma.role.create({
         data: { ...createRole() },
       })
@@ -48,7 +48,7 @@ async function main() {
   const skillIds = skills.map(s => s.id)
   const rolesIds = roles.map(r => r.id)
   Promise.all(
-    Array.from({ length: 50 }, async () => {
+    Array.from({ length: 25 }, async () => {
       await prisma.talent.create({
         data: {
           ...createTalent(),
@@ -81,7 +81,7 @@ async function main() {
 
   console.time('Inserting categories')
   const categories = await Promise.all(
-    Array.from({ length: 20 }, async () => {
+    Array.from({ length: 10 }, async () => {
       return await prisma.category.create({
         data: { ...createCategory() },
       })
@@ -92,7 +92,7 @@ async function main() {
   console.time('Inserting companies')
   const categoryIds = categories.map(c => c.id)
   Promise.all(
-    Array.from({ length: 20 }, async () => {
+    Array.from({ length: 10 }, async () => {
       await prisma.company.create({
         data: {
           category: {
