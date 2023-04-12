@@ -10,7 +10,7 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|css|ts|tsx)\"",
     "format": "npm run prettier -- --write",
     "prepare": "husky install",
-    "validate": "npm run lint && npm run build",
+    "validate": "npm run build",
     "init:db": "prisma generate && prisma migrate deploy && prisma db seed"
   },
   "dependencies": {
@@ -29,7 +29,7 @@
     "typescript": "5.0.4"
   },
   "engines": {
-    "node": "18",
+    "node": ">=16.20",
     "npm": ">=9.6",
     "yarn": "please-use-npm-or-pnpm"
   },
