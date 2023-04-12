@@ -10,6 +10,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Talent {
+  id       String  @id @default(cuid())
+  name     String
+  lastname String
+  age      Int
+  skills   Skill[]
+}
+
+model Skill {
+  name     String
+  talent   Talent @relation(references: [id], fields: [talentId], onDelete: Cascade, onUpdate: Cascade)
+  talentId String @unique
+}
+
+model Company {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  address     String
+  category    Category[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+}
+
 model Job {
   id          String @id @default(cuid())
   code        String @unique
