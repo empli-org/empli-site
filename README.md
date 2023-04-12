@@ -27,6 +27,12 @@ Create environment file
 cp .env-sample .env
 ```
 
+Init Database:
+
+```
+pnpm init:db
+```
+
 Run the project:
 
 ```
