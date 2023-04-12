@@ -10,7 +10,8 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|css|ts|tsx)\"",
     "format": "npm run prettier -- --write",
     "prepare": "husky install",
-    "validate": "npm run lint && npm run build"
+    "validate": "npm run lint && npm run build",
+    "init:db": "prisma generate && prisma migrate deploy && prisma db seed"
   },
   "dependencies": {
     "@prisma/client": "^4.12.0",
@@ -39,6 +40,10 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7",
-    "prisma": "^4.12.0"
+    "prisma": "^4.12.0",
+    "tsx": "^3.12.6"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed"
   }
 }
