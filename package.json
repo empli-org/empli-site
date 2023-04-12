@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|css|ts|tsx)\"",
+    "format": "npm run prettier -- --write"
   },
   "dependencies": {
     "@types/node": "18.15.11",
@@ -26,5 +28,10 @@
     "node": "18",
     "npm": ">=9.6",
     "yarn": "please-use-npm-or-pnpm"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7"
   }
 }
