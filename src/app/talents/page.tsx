@@ -15,7 +15,7 @@ const pepe = [
     name: 'Mary Jones',
     roles: ['developer'],
     skills: ['Angular', 'MongoDB'],
-    yearsOfExp: 3,
+    yearsOfExp: 3, 
   },
   {
     id: 3,
