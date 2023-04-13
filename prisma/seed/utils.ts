@@ -53,7 +53,7 @@ export function createCompany() {
 
 export function createJob() {
   return {
-    code: '',
+    code: faker.random.alphaNumeric(6),
     title: faker.name.jobTitle(),
     description: faker.name.jobDescriptor(),
     area: faker.name.jobArea(),

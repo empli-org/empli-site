@@ -3,6 +3,7 @@ import {
   createCategory,
   createCompany,
   createContactInfo,
+  createJob,
   createRole,
   createSkill,
   createSocialInfo,
@@ -35,7 +36,7 @@ async function main() {
 
   console.time('Inserting roles')
   const roles = await Promise.all(
-    Array.from({ length: 30 }, async () => {
+    Array.from({ length: 20 }, async () => {
       return await prisma.role.create({
         data: { ...createRole() },
       })
@@ -48,7 +49,7 @@ async function main() {
   const skillIds = skills.map(s => s.id)
   const rolesIds = roles.map(r => r.id)
   Promise.all(
-    Array.from({ length: 50 }, async () => {
+    Array.from({ length: 20 }, async () => {
       await prisma.talent.create({
         data: {
           ...createTalent(),
@@ -81,7 +82,7 @@ async function main() {
 
   console.time('Inserting categories')
   const categories = await Promise.all(
-    Array.from({ length: 20 }, async () => {
+    Array.from({ length: 10 }, async () => {
       return await prisma.category.create({
         data: { ...createCategory() },
       })
@@ -91,9 +92,9 @@ async function main() {
 
   console.time('Inserting companies')
   const categoryIds = categories.map(c => c.id)
-  Promise.all(
-    Array.from({ length: 20 }, async () => {
-      await prisma.company.create({
+  const companies = await Promise.all(
+    Array.from({ length: 15 }, async () => {
+      return await prisma.company.create({
         data: {
           category: {
             connect: {
@@ -106,6 +107,20 @@ async function main() {
     }),
   )
   console.timeEnd('Inserting companies')
+
+  console.time('Inserting jobs')
+  const companiesIds = companies.map(c => c.id)
+  Promise.all(
+    Array.from({ length: companiesIds.length }, async (_, idx) => {
+      await prisma.job.create({
+        data: {
+          ...createJob(),
+          company: { connect: { id: companiesIds[idx] } },
+        },
+      })
+    }),
+  )
+  console.timeEnd('Inserting jobs')
 }
 
 main()
